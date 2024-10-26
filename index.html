@@ -1,151 +1,196 @@
-Certainly! I'll combine the previous code with the new features you've requested, including making the resume look like it's floating in midair and adding left and right arrows to switch between pages. Here's the updated HTML and CSS code:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Interactive Resume</title>
+    <title>Michael Hinkle - Cloud Solutions Support Engineer</title>
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-            overflow: hidden;
+            height: 100%;
             font-family: Arial, sans-serif;
-        }
-        #resume-container {
-            width: 70%;
-            max-width: 800px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
-            z-index: 1;
-            transform: perspective(1000px) rotateX(5deg);
-            transition: transform 0.3s ease;
-        }
-        #resume-container:hover {
-            transform: perspective(1000px) rotateX(0deg) translateY(-10px);
+            background-color: #000;
+            color: #333;
+            overflow: hidden;
         }
         #galaxy {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            z-index: -1;
         }
-        .nav-arrow {
+        #resume-container {
             position: absolute;
             top: 50%;
-            font-size: 3rem;
-            color: white;
-            cursor: pointer;
-            z-index: 2;
+            left: 50%;
+            transform: translate(-50%, -50%) perspective(1000px) rotateX(5deg);
+            width: 80%;
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
             transition: transform 0.3s ease;
         }
-        .nav-arrow:hover {
-            transform: scale(1.2);
+        #resume-container:hover {
+            transform: translate(-50%, -50%) perspective(1000px) rotateX(0deg) translateY(-10px);
         }
-        #left-arrow {
-            left: 20px;
+        h1, h2 {
+            color: #2c3e50;
         }
-        #right-arrow {
-            right: 20px;
+        .section {
+            margin-bottom: 20px;
         }
-        .page {
-            display: none;
+        .job {
+            margin-bottom: 15px;
         }
-        .page.active {
-            display: block;
+        .job-title {
+            font-weight: bold;
+        }
+        .job-date {
+            font-style: italic;
+        }
+        ul {
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
     <canvas id="galaxy"></canvas>
     <div id="resume-container">
-        <div id="resume-page" class="page active">
-            <h1>Your Name</h1>
-            <!-- Add your resume content here -->
+        <h1>Michael Hinkle</h1>
+        <h2>Cloud Solutions Support Engineer</h2>
+        
+        <div class="section">
+            <h3>Contact</h3>
+            <p>Email: mhinkle9983@gmail.com</p>
+            <p>Phone: 1+ (209)500-5842</p>
+            <p>LinkedIn: linkedin.com/in/michael-hinkle/</p>
+            <p>GitHub: https://github.com/Hinkleberg</p>
         </div>
-        <div id="skills-page" class="page">
-            <h2>Skills Matches</h2>
-            <p>^-Room for more!</p>
+
+        <div class="section">
+            <h3>Summary</h3>
+            <p>Experienced Cloud Engineer with expertise in storage solutions, cloud infrastructure, and virtualization technologies. Proven success in designing, implementing, and managing robust cloud environments and storage systems. Skilled in collaborating with cross-functional teams to solve complex technical issues. Certified in VCE VMware/Cisco Converged Enterprise and ITIL V3.</p>
+        </div>
+
+        <div class="section">
+            <h3>Skills</h3>
             <ul>
+                <li>Cloud Infrastructure Management</li>
+                <li>VxBlock, Symmetrix, VNX, Avamar</li>
+                <li>Unisphere, ViPR, CloudIQ, DD, DPC</li>
+                <li>vRealize/vROps, PowerPath</li>
+                <li>vxBlock/VxRail, VMware, vCenter</li>
+                <li>Cisco/Brocade, VMware/Converged</li>
+                <li>Cloud Storage Management</li>
+                <li>Data Center Infrastructure</li>
+                <li>SAN/NAS Storage</li>
+                <li>Converged Infrastructure</li>
+                <li>Hyper-Converged</li>
+                <li>Data Migration</li>
+                <li>Storage Automation</li>
+                <li>Storage Performance Optimization</li>
+                <li>SDS, Project Management</li>
+                <li>DCOPS</li>
+                <li>RSA - 2FA</li>
                 <li>Bash/Shell/Powershell</li>
+                <li>TCP/IP</li>
+                <li>Load Balancers</li>
+                <li>Firewalls and Network Security-Cloud</li>
+                <li>Attention to Detail - Problem Solver</li>
+                <li>Analytical Thinking</li>
+                <li>Communication Skills - Technical</li>
             </ul>
         </div>
-        <div id="accolades-page" class="page">
-            <h2>Accolades</h2>
-            <!-- Add your accolades content here -->
+
+        <div class="section">
+            <h3>Work Experience</h3>
+            <div class="job">
+                <p class="job-title">Amazon Delivery Driver - Rafter D LLC., Tangent, OR</p>
+                <p class="job-date">3/2023-7/2023</p>
+                <p>Delivered Amazon heavy packages in a safe and timely manner, adhering to Amazon safety standards and traffic laws.</p>
+            </div>
+            <div class="job">
+                <p class="job-title">Truck Driver - Market Express, Portland, OR</p>
+                <p class="job-date">11/2022-2/2023</p>
+                <p>Maintained equipment and delivered products efficiently, upholding the company's image and best interests. Followed safety protocols, DOT regulations, and traffic laws while ensuring equipment was returned in better condition. Operated within FMCSA guidelines and legal DOT regulations.</p>
+            </div>
+            <div class="job">
+                <p class="job-title">VDT Model 3/Y Test Driver - Tesla Motors, Fremont, CA</p>
+                <p class="job-date">11/17/21-7/4/22</p>
+                <p>Test drove Model 3 and Y vehicles on a test track to identify any malfunctions or mechanical issues. Listened for potential issues and ensured vehicles were in optimal condition before customer delivery.</p>
+            </div>
+            <!-- Add more job entries here -->
+        </div>
+
+        <div class="section">
+            <h3>Certifications</h3>
+            <ul>
+                <li>VCE-CIAS Converged Infrastructure Specialist</li>
+                <li>Dell EMC Academy</li>
+                <li>ISM V3 Information Storage Management</li>
+                <li>ITIL V3 IT Service Management</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Education</h3>
+            <p>US Army National Guard - Blackhawk Navigation Systems Repairer (35Q)</p>
+            <p>12/17/98-12/17/06</p>
         </div>
     </div>
-    <div id="left-arrow" class="nav-arrow">&#8249;</div>
-    <div id="right-arrow" class="nav-arrow">&#8250;</div>
 
     <script>
-        // Galaxy animation script
+        // Galaxy animation
         const canvas = document.getElementById('galaxy');
         const ctx = canvas.getContext('2d');
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // Galaxy animation code here
-        // (You'll need to implement the galaxy animation)
+        const stars = [];
+        const starCount = 1000;
 
-        // Page navigation
-        const pages = ['resume-page', 'skills-page', 'accolades-page'];
-        let currentPageIndex = 0;
-
-        function showPage(index) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(pages[index]).classList.add('active');
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                speed: Math.random() * 0.5
+            });
         }
 
-        document.getElementById('left-arrow').addEventListener('click', () => {
-            currentPageIndex = (currentPageIndex - 1 + pages.length) % pages.length;
-            showPage(currentPageIndex);
-        });
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
 
-        document.getElementById('right-arrow').addEventListener('click', () => {
-            currentPageIndex = (currentPageIndex + 1) % pages.length;
-            showPage(currentPageIndex);
+                star.x += star.speed;
+                star.y += star.speed;
+
+                if (star.x > canvas.width) star.x = 0;
+                if (star.y > canvas.height) star.y = 0;
+            });
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
     </script>
 </body>
 </html>
-```
-
-This updated code includes the following new features:
-
-1. The resume container now has a 3D transform to make it look like it's floating in midair. It also has a hover effect that lifts it slightly.
-
-2. Left and right arrow navigation buttons have been added to switch between pages.
-
-3. The content is now divided into three pages: resume, skills, and accolades. You can switch between these using the arrow buttons.
-
-4. The CSS has been updated to support the new floating effect and navigation arrows.
-
-5. JavaScript has been added to handle the page switching functionality.
-
-To complete this implementation:
-
-1. Replace the content in each page div (`resume-page`, `skills-page`, and `accolades-page`) with the appropriate content from your PDF resume.
-
-2. Implement the galaxy animation in the JavaScript section where indicated.
-
-3. Adjust the CSS styles as needed to match your resume's appearance, including fonts, colors, and spacing.
-
-4. Consider adding responsive design elements to ensure the layout works well on different screen sizes.
-
-5. If your resume includes images, make sure to upload them to your GitHub repository and update the image paths in the HTML.
-
-Remember to test the page thoroughly and make any necessary adjustments to ensure it looks and functions as desired on GitHub Pages[1].
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/36475025/04bffe74-f216-4374-a833-fa889fd814cc/COMPLETE-Resume-with-Links-Pic.pdf
