@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Hinkle - Resume</title>
+    <title>First Site Project</title>
     <style>
         body, html {
             margin: 0;
@@ -18,22 +18,23 @@
             left: 0;
             z-index: -1;
         }
-        #resume {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .resume-container {
+            display: flex;
+            justify-content: space-between;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .resume {
+            width: 48%;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            max-width: 800px;
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
             transition: all 0.3s ease;
         }
-        #resume:hover {
-            transform: translate(-50%, -50%) scale(1.05);
+        .resume:hover {
             background-color: rgba(255, 255, 255, 0.95);
         }
         h1, h2, h3 {
@@ -48,73 +49,148 @@
         ul {
             padding-left: 20px;
         }
+        #soundControl {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
-    <div id="resume">
-        <h1>Tech Resume</h1>
-        <p> ❖ Modesto, CA ❖ <a href="#">GitHub</a>; <a href="#">LinkedIn</a></p>
+    <div class="resume-container">
+        <div class="resume" id="resume1">
+            <h1>Michael H.</h1>
+            <p>❖ Modesto, CA ❖ <a href="#">GitHub</a>; <a href="#">LinkedIn</a></p>
 
-        <div class="section">
-            <h2>CERTIFICATIONS, SKILLS & INTERESTS</h2>
-            <ul>
-                <li>Certifications: VCE-CIAS Certified Converged Infrastructure Administration Specialist</li>
-                <li>Skills: Attention to Detail, Time Management, Problem Solving Skills, Analytical Thinking, Adaptability, Conflict Resolution (Important), Cooperation, Teamwork, Leadership, Evolving</li>
-                <li>Tech: Symmetrix; VNX; Avamar; vPLEX; VMware, Migrations, Bash, Firewalls and Network Security (Cloud), Load Balancers, Attention to Detail, Analytical Thinking, Storage Automation, SAN/NAS Storage specialist.</li>
-            </ul>
-        </div>
+            <div class="section">
+                <h2>CERTIFICATIONS, SKILLS & INTERESTS</h2>
+                <ul>
+                    <li>Certifications: VCE-CIAS Certified Converged Infrastructure Administration Specialist</li>
+                    <li>Skills: Attention to Detail, Time Management, Problem Solving Skills, Analytical Thinking, Adaptability, Conflict Resolution (Important), Cooperation, Teamwork, Leadership, Evolving</li>
+                    <li>Tech: Symmetrix; VNX; Avamar; vPLEX; VMware, Migrations, Bash, Firewalls and Network Security (Cloud), Load Balancers, Attention to Detail, Analytical Thinking, Storage Automation, SAN/NAS Storage specialist.</li>
+                </ul>
+            </div>
 
-        <div class="section">
-            <h2>WORK EXPERIENCE</h2>
-            <div class="job">
-                <h3>Dell EMC</h3>
-                <p>Senior Cloud Storage Support Engineer | September 2013 - March 2015 | Hybrid Draper, UT</p>
-                <ul>
-                    <li>Architecture design of Managed/Federated accounts and post implementation support, for our partnered Storage Providers, Field Technicians, & Account Managers.</li>
-                    <li>Created change control processes for firmware upgrades on Brocade Globally, saving time per upgrade on Core/Edge Brocade Switches, saving possible downtimes.</li>
-                    <li>Fielded E-Mails and inbound phone calls while performing upgrades with C-Suite Executives.</li>
-                    <li>Stack: VMAX; VNX; vPlex; Avamar; Cisco/Brocade Firmware Upgrades.</li>
-                </ul>
+            <div class="section">
+                <h2>WORK EXPERIENCE</h2>
+                <div class="job">
+                    <h3>Dell EMC</h3>
+                    <p>Senior Cloud Storage Support Specialist | September 2013 - March 2015 | Hybrid Draper, UT</p>
+                    <ul>
+                        <li>Architecture design of Managed/Federated accounts and post implementation support, for our partnered Storage Providers, Field Technicians, & Account Managers.</li>
+                        <li>Created change control processes for firmware upgrades on Brocade Globally, saving time per upgrade on Core/Edge Brocade Switches, saving possible downtimes.</li>
+                        <li>Fielded E-Mails and inbound phone calls while performing upgrades with C-Suite Executives.</li>
+                        <li>Stack: VMAX; VNX; vPlex; Avamar; Cisco/Brocade Firmware Upgrades.</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h3>rePlanet USA</h3>
+                    <p>IT and RVM Helpdesk Specialist | March 2012 - July 2013 | Corona, CA</p>
+                    <ul>
+                        <li>Conducted 280 Recycling Centers technology hardware in California. Asset tracking, inventory, and hardware analysis were just a few of my duties.</li>
+                        <li>Tracked and monitored product data analysis, giving recycling information, and projected sales/recycling informatics to companies for Optimizing sales, based on demographics of recycled containers.</li>
+                        <li>Developed strategies that helped usher in big data for corporations seeking further investments based on analytics for each recycling center and their locations. Reimaging of AIO touchscreen panels with embedded CE, Iphones/Android Tablets over Samba, with custom image installations.</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h3>United States Army National Guard</h3>
+                    <p>Navigation Systems Repair (Blackhawks) (Spc, E-4) | December 1998 – December 2006 | Owasso, OK</p>
+                    <ul>
+                        <li>Repaired Navigation Systems on Blackhawk Helicopters</li>
+                        <li>Maintained 100% availability of Navigation Systems, vehicles, and equipment at all times to ensure quick delivery in any circumstance.</li>
+                        <li>Developed, tested, handled, stored, and disposed of electronics/equipment (Classified)</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h3>Hadco Construction</h3>
+                    <p>Excavation Laborer | June 2015 – March 2016 | Lehi, UT</p>
+                    <ul>
+                        <li>Installed, maintained, trenched, and dug holes for foundation excavation for both Residential and Commercial locations.</li>
+                        <li>Assist Excavation Operators, by operating transits/lasers to make sure that the foundation digs are in proper dimensions.</li>
+                        <li>Conduct daily safety activities to make sure that digs are safe to operate within. Installed underground utilities, septic systems, and water mains to the foundation pre-build.</li>
+                    </ul>
+                    <p>Dump Truck Operator | Oct 2018 – July 2019</p>
+                    <ul>
+                        <li>Prior to my promotion to Truck Driver, I performed my duties and was allowed to participate in a CDL Program based on performance.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="job">
-                <h3>rePlanet USA</h3>
-                <p>IT and RVM Helpdesk Engineer | March 2012 - July 2013 | Corona, CA</p>
-                <ul>
-                    <li>Conducted 280 Recycling Centers technology hardware in California. Asset tracking, inventory, and hardware analysis were just a few of my duties.</li>
-                    <li>Tracked and monitored product data analysis, giving recycling information, and projected sales/recycling informatics to companies for Optimizing sales, based on demographics of recycled containers.</li>
-                    <li>Developed strategies that helped usher in big data for corporations seeking further investments based on analytics for each recycling center and their locations.</li>
-                    <li>Reimaging of AIO touchscreen panels with embedded CE, Iphones/Android Tablets over Samba, with custom image installations.</li>
-                </ul>
-            </div>
-            <div class="job">
-                <h3>United States Army National Guard</h3>
-                <p>Navigation Systems Repair (Blackhawks) (Spc, E-4) | December 1998 – December 2006 | Owasso, OK</p>
-                <ul>
-                    <li>Repaired Navigation Systems on Blackhawk Helicopters</li>
-                    <li>Maintained 100% availability of Navigation Systems, vehicles, and equipment at all times to ensure quick delivery in any circumstance.</li>
-                    <li>Developed, tested, handled, stored, and disposed of electronics/equipment (Classified)</li>
-                </ul>
-            </div>
-            <div class="job">
-                <h3>Hadco Construction</h3>
-                <p>Excavation Laborer | June 2015 – March 2016 | Lehi, UT</p>
-                <ul>
-                    <li>Installed, maintained, trenched, and dug holes for foundation excavation for both Residential and Commercial locations.</li>
-                    <li>Assist Excavation Operators, by operating transits/lasers to make sure that the foundation digs are in proper dimensions.</li>
-                    <li>Conduct daily safety activities to make sure that digs are safe to operate within. Installed underground utilities, septic systems, and water mains to the foundation pre-build.</li>
-                </ul>
-                <p>Dump Truck Operator | Oct 2018 – July 2019</p>
-                <ul>
-                    <li>Prior to my promotion to Truck Driver, I performed my duties and was allowed to participate in a CDL Program based on performance.</li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="section">
-            <h2>EDUCATION</h2>
-            <p>Thunderbird Academy - High School Diploma (Aviation)(Construction) | Pryor, OK</p>
+            <div class="section">
+                <h2>EDUCATION</h2>
+                <p>Thunderbird Academy - High School Diploma (Aviation)(Construction) | Pryor, OK</p>
+            </div>
         </div>
+        <div class="resume" id="resume2">
+            <h1>Michael H.</h1>
+            <h2>Cloud Solutions Support Specialist</h2>
+            <p>Experienced Cloud Specialist with expertise in storage solutions, cloud infrastructure, and virtualization technologies. Proven success in designing, implementing, and managing robust cloud environments and storage systems. Skilled in collaborating with cross-functional teams to solve complex technical issues. Certified in VCE VMware/Cisco Converged Enterprise and ITIL V3.<
+
+            <div class="section">
+                <h2>SKILLS</h2>
+                <p>Cloud Infrastructure Management, VxBlock, Symmetrix, VNX, Avamar, Unisphere, ViPR, CloudIQ, DD, DPC, vRealize/vROps, PowerPath, vxBlock/VxRail, VMware, vCenter, Cisco/Brocade, VMware/Converged.</p>
+            </div>
+
+            <div class="section">
+                <h2>CERTIFICATIONS</h2>
+                <p>VCE-CIAS Converged Infrastructure Specialist</p>
+            </div>
+
+            <div class="section">
+                <h2>SKILLS MATCHES</h2>
+                <ul>
+                    <li>Cloud Storage Management</li>
+                    <li>Data Center Infrastructure</li>
+                    <li>SAN/NAS Storage</li>
+                    <li>Converged Infrastructure</li>
+                    <li>Hyper-Converged</li>
+                    <li>Data Migration</li>
+                    <li>Storage Automation</li>
+                    <li>Storage Performance Optimization</li>
+                    <li>SDS, Project Management</li>
+                    <li>DCOPS</li>
+                    <li>RSA - 2FA</li>
+                    <li>Bash/Shell/Powershell</li>
+                    <li>TCP/IP</li>
+                    <li>Load Balancers</li>
+                    <li>Firewalls and Network Security-Cloud</li>
+                    <li>Attention to Detail - Problem Solver</li>
+                    <li>Analytical Thinking</li>
+                    <li>Communication Skills - Technical</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>LANGUAGES</h2>
+                <p>English (Native)</p>
+            </div>
+
+            <div class="section">
+                <h2>WORK EXPERIENCE</h2>
+                <!-- Add work experience from the second resume here -->
+            </div>
+
+            <div class="section">
+                <h2>EDUCATION</h2>
+                <h3>Dell EMC Academy</h3>
+                <ul>
+                    <li>VCE Virtual Computing Env. -Acquired</li>
+                    <li>ISM V3 Information Storage Management</li>
+                    <li>ITIL V3 IT Service Management</li>
+                    <li>RSA - 2FA</li>
+                    <li>Linux/Ubuntu</li>
+                    <li>Windows</li>
+                    <li>Custom GUI</li>
+                    <li>Command Structure</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="soundControl">
+        <button id="toggleSound">🔇</button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
     </div>
 
     <script>
@@ -123,36 +199,44 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const ball = {
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            radius: 10,
-            dx: 2,
-            dy: -2
-        };
+        const balls = [];
         const gravity = 0.1;
         const bounce = 0.8;
+
+        for (let i = 0; i < 11; i++) {
+            balls.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: 10,
+                dx: (Math.random() - 0.5) * 4,
+                dy: (Math.random() - 0.5) * 4
+            });
+        }
 
         function updateGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ball.dy += gravity;
-            ball.x += ball.dx;
-            ball.y += ball.dy;
+            balls.forEach(ball => {
+                ball.dy += gravity;
+                ball.x += ball.dx;
+                ball.y += ball.dy;
 
-            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-                ball.dx *= -1;
-            }
-            if (ball.y + ball.radius > canvas.height) {
-                ball.y = canvas.height - ball.radius;
-                ball.dy *= -bounce;
-            }
+                if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+                    ball.dx *= -1;
+                    playBounceSound();
+                }
+                if (ball.y + ball.radius > canvas.height) {
+                    ball.y = canvas.height - ball.radius;
+                    ball.dy *= -bounce;
+                    playBounceSound();
+                }
 
-            ctx.beginPath();
-            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(0, 150, 220, 0.5)';
-            ctx.fill();
-            ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 150, 220, 0.5)';
+                ctx.fill();
+                ctx.closePath();
+            });
 
             requestAnimationFrame(updateGame);
         }
@@ -163,6 +247,38 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
+
+        // Sound engine
+        const bounceSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU'+Array(1e3).join(123));
+        const backgroundMusic = new Audio('https://www.youtube.com/watch?v=o5_11PqtDnY'); // Replace with actual URL
+        backgroundMusic.loop = true;
+
+        const toggleSoundBtn = document.getElementById('toggleSound');
+        const volumeSlider = document.getElementById('volumeSlider');
+
+        let isMuted = true;
+
+        function playBounceSound() {
+            if (!isMuted) {
+                bounceSound.currentTime = 0;
+                bounceSound.play();
+            }
+        }
+
+        toggleSoundBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            toggleSoundBtn.textContent = isMuted ? '🔇' : '🔊';
+            backgroundMusic[isMuted ? 'pause' : 'play']();
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            const volume = volumeSlider.value;
+            bounceSound.volume = volume;
+            backgroundMusic.volume = volume;
+        });
+
+        // Start background music (will only play when unmuted)
+        backgroundMusic.play();
     </script>
 </body>
 </html>
