@@ -1,173 +1,151 @@
-# Core ERP System with AI Integration
-from datetime import datetime
-import sqlite3
-from typing import Dict, List
-import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-import numpy as np
+Certainly! I'll combine the previous code with the new features you've requested, including making the resume look like it's floating in midair and adding left and right arrows to switch between pages. Here's the updated HTML and CSS code:
 
-class AIEnhancedERP:
-    def __init__(self):
-        self.conn = sqlite3.connect('erp_database.db')
-        self.setup_database()
-        self.ml_models = {}
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Interactive Resume</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #resume-container {
+            width: 70%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+        #resume-container:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-10px);
+        }
+        #galaxy {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        .nav-arrow:hover {
+            transform: scale(1.2);
+        }
+        #left-arrow {
+            left: 20px;
+        }
+        #right-arrow {
+            right: 20px;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="galaxy"></canvas>
+    <div id="resume-container">
+        <div id="resume-page" class="page active">
+            <h1>Your Name</h1>
+            <!-- Add your resume content here -->
+        </div>
+        <div id="skills-page" class="page">
+            <h2>Skills Matches</h2>
+            <p>^-Room for more!</p>
+            <ul>
+                <li>Bash/Shell/Powershell</li>
+            </ul>
+        </div>
+        <div id="accolades-page" class="page">
+            <h2>Accolades</h2>
+            <!-- Add your accolades content here -->
+        </div>
+    </div>
+    <div id="left-arrow" class="nav-arrow">&#8249;</div>
+    <div id="right-arrow" class="nav-arrow">&#8250;</div>
 
-    def setup_database(self):
-        cursor = self.conn.cursor()
-        
-        # Create core ERP tables
-        cursor.executescript("""
-            CREATE TABLE IF NOT EXISTS inventory (
-                item_id TEXT PRIMARY KEY,
-                name TEXT,
-                quantity INTEGER,
-                reorder_point INTEGER,
-                unit_cost REAL,
-                last_updated TIMESTAMP
-            );
+    <script>
+        // Galaxy animation script
+        const canvas = document.getElementById('galaxy');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            CREATE TABLE IF NOT EXISTS sales (
-                sale_id TEXT PRIMARY KEY,
-                customer_id TEXT,
-                total_amount REAL,
-                timestamp TIMESTAMP,
-                status TEXT
-            );
+        // Galaxy animation code here
+        // (You'll need to implement the galaxy animation)
 
-            CREATE TABLE IF NOT EXISTS forecasts (
-                forecast_id TEXT PRIMARY KEY,
-                item_id TEXT,
-                predicted_demand REAL,
-                confidence_score REAL,
-                forecast_date TIMESTAMP,
-                FOREIGN KEY (item_id) REFERENCES inventory(item_id)
-            );
+        // Page navigation
+        const pages = ['resume-page', 'skills-page', 'accolades-page'];
+        let currentPageIndex = 0;
 
-            CREATE TABLE IF NOT EXISTS finance (
-                transaction_id TEXT PRIMARY KEY,
-                amount REAL,
-                type TEXT,
-                category TEXT,
-                timestamp TIMESTAMP
-            );
-        """)
-        self.conn.commit()
-
-    def add_inventory_item(self, item_data: Dict):
-        cursor = self.conn.cursor()
-        cursor.execute("""
-            INSERT INTO inventory (item_id, name, quantity, reorder_point, unit_cost, last_updated)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, (
-            item_data['item_id'],
-            item_data['name'],
-            item_data['quantity'],
-            item_data['reorder_point'],
-            item_data['unit_cost'],
-            datetime.now()
-        ))
-        self.conn.commit()
-
-    def predict_demand(self, item_id: str, historical_data: List[Dict]) -> Dict:
-        """
-        AI-powered demand forecasting
-        """
-        if item_id not in self.ml_models:
-            self.ml_models[item_id] = RandomForestRegressor(n_estimators=100)
-
-        # Prepare historical data
-        df = pd.DataFrame(historical_data)
-        features = ['season', 'price', 'marketing_spend']
-        X = df[features]
-        y = df['demand']
-
-        # Train model
-        self.ml_models[item_id].fit(X, y)
-
-        # Make prediction
-        latest_data = X.iloc[-1].values.reshape(1, -1)
-        predicted_demand = self.ml_models[item_id].predict(latest_data)[0]
-        confidence = self.ml_models[item_id].score(X, y)
-
-        return {
-            'item_id': item_id,
-            'predicted_demand': predicted_demand,
-            'confidence_score': confidence,
-            'forecast_date': datetime.now()
+        function showPage(index) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pages[index]).classList.add('active');
         }
 
-    def optimize_inventory(self) -> List[Dict]:
-        """
-        AI-powered inventory optimization
-        """
-        cursor = self.conn.cursor()
-        cursor.execute("SELECT * FROM inventory")
-        inventory_items = cursor.fetchall()
-        
-        optimized_orders = []
-        for item in inventory_items:
-            # Get historical demand data
-            cursor.execute("""
-                SELECT * FROM sales 
-                WHERE item_id = ? 
-                ORDER BY timestamp DESC 
-                LIMIT 90
-            """, (item[0],))
-            sales_history = cursor.fetchall()
-            
-            if len(sales_history) > 0:
-                # Calculate optimal reorder point using ML
-                demand_forecast = self.predict_demand(item[0], sales_history)
-                lead_time = 7  # days
-                safety_stock = np.std([s[3] for s in sales_history]) * 1.96  # 95% confidence
-                
-                optimal_reorder_point = (demand_forecast['predicted_demand'] * lead_time) + safety_stock
-                
-                if item[2] < optimal_reorder_point:  # current quantity < reorder point
-                    optimized_orders.append({
-                        'item_id': item[0],
-                        'name': item[1],
-                        'current_quantity': item[2],
-                        'suggested_order': int(optimal_reorder_point - item[2]),
-                        'confidence': demand_forecast['confidence_score']
-                    })
-        
-        return optimized_orders
+        document.getElementById('left-arrow').addEventListener('click', () => {
+            currentPageIndex = (currentPageIndex - 1 + pages.length) % pages.length;
+            showPage(currentPageIndex);
+        });
 
-    def generate_financial_report(self) -> Dict:
-        """
-        Generate comprehensive financial analysis
-        """
-        cursor = self.conn.cursor()
-        
-        # Get revenue
-        cursor.execute("""
-            SELECT SUM(total_amount) 
-            FROM sales 
-            WHERE timestamp >= date('now', '-30 days')
-        """)
-        revenue = cursor.fetchone()[0] or 0
-        
-        # Get expenses
-        cursor.execute("""
-            SELECT SUM(amount) 
-            FROM finance 
-            WHERE type = 'expense' 
-            AND timestamp >= date('now', '-30 days')
-        """)
-        expenses = cursor.fetchone()[0] or 0
-        
-        # Calculate metrics
-        gross_profit = revenue - expenses
-        profit_margin = (gross_profit / revenue * 100) if revenue > 0 else 0
-        
-        return {
-            'revenue': revenue,
-            'expenses': expenses,
-            'gross_profit': gross_profit,
-            'profit_margin': profit_margin,
-            'generated_at': datetime.now()
-        }
+        document.getElementById('right-arrow').addEventListener('click', () => {
+            currentPageIndex = (currentPageIndex + 1) % pages.length;
+            showPage(currentPageIndex);
+        });
+    </script>
+</body>
+</html>
+```
 
-    def close(self):
-        self.conn.close()
+This updated code includes the following new features:
+
+1. The resume container now has a 3D transform to make it look like it's floating in midair. It also has a hover effect that lifts it slightly.
+
+2. Left and right arrow navigation buttons have been added to switch between pages.
+
+3. The content is now divided into three pages: resume, skills, and accolades. You can switch between these using the arrow buttons.
+
+4. The CSS has been updated to support the new floating effect and navigation arrows.
+
+5. JavaScript has been added to handle the page switching functionality.
+
+To complete this implementation:
+
+1. Replace the content in each page div (`resume-page`, `skills-page`, and `accolades-page`) with the appropriate content from your PDF resume.
+
+2. Implement the galaxy animation in the JavaScript section where indicated.
+
+3. Adjust the CSS styles as needed to match your resume's appearance, including fonts, colors, and spacing.
+
+4. Consider adding responsive design elements to ensure the layout works well on different screen sizes.
+
+5. If your resume includes images, make sure to upload them to your GitHub repository and update the image paths in the HTML.
+
+Remember to test the page thoroughly and make any necessary adjustments to ensure it looks and functions as desired on GitHub Pages[1].
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/36475025/04bffe74-f216-4374-a833-fa889fd814cc/COMPLETE-Resume-with-Links-Pic.pdf
