@@ -26,7 +26,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) perspective(1000px) rotateX(5deg);
+            transform: translate(-50%, -50%);
             width: 80%;
             max-width: 900px;
             height: 80vh;
@@ -34,20 +34,17 @@
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            transition: transform 0.3s ease;
             overflow-y: auto;
-        }
-        #resume-container:hover {
-            transform: translate(-50%, -50%) perspective(1000px) rotateX(0deg) translateY(-10px);
         }
         h1, h2 {
             color: #2c3e50;
+            margin-bottom: 10px;
         }
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .job {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .job-title {
             font-weight: bold;
@@ -57,6 +54,7 @@
         }
         ul {
             padding-left: 20px;
+            margin: 5px 0;
         }
         .nav-arrow {
             position: fixed;
@@ -79,36 +77,144 @@
         .page.active {
             display: block;
         }
+        p, li {
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0 0 5px 0;
+        }
     </style>
 </head>
 <body>
     <canvas id="galaxy"></canvas>
     <div id="resume-container">
         <div id="resume-page" class="page active">
-            <!-- Resume content here -->
             <h1>Michael Hinkle</h1>
             <h2>Cloud Solutions Support Engineer</h2>
-            <!-- ... (rest of the resume content) ... -->
+            <div class="section">
+                <div class="job">
+                    <div class="job-title">Amazon Delivery Driver - Rafter D LLC.</div>
+                    <div class="job-date">3/2023-7/2023</div>
+                    <p>Delivered Amazon heavy packages in a safe and timely manner, adhering to Amazon safety standards and traffic laws.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Truck Driver - Market Express</div>
+                    <div class="job-date">11/2022-2/2023</div>
+                    <p>Maintained equipment and delivered products efficiently, upholding the company's image and best interests. Followed safety protocols, DOT regulations, and traffic laws while ensuring equipment was returned in better condition. Operated within FMCSA guidelines and legal DOT regulations.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">VDT Model 3/Y Test Driver - Tesla Motors</div>
+                    <div class="job-date">11/17/21-7/4/22</div>
+                    <p>Test drove Model 3 and Y vehicles on a test track to identify any malfunctions or mechanical issues. Listened for potential issues and ensured vehicles were in optimal condition before customer delivery.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Peddle Route Driver - US Foods</div>
+                    <div class="job-date">9/2021-11/2021</div>
+                    <p>Delivered products to multiple locations daily on a rotating schedule. Maintained equipment and adhered to safety, DOT, and traffic laws. Ensured accurate product counts and delivered high-quality products to customers.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Yard Hostler - Nestle Purina (Linear Spotting)</div>
+                    <div class="job-date">5/1/21-9/15/21</div>
+                    <p>Moved trailers (20ft-57ft) in and out of secure lots and dock doors for inbound/outbound deliveries. Conducted pre/post equipment checks and ensured inbound trailers met DOT qualifications for handling FDA-regulated food products.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Peddle Route Driver - Dairy Farmers of America</div>
+                    <div class="job-date">8/19/20-3/15/21</div>
+                    <p>Delivered products to multiple locations daily on a rotating schedule. Maintained equipment and adhered to safety, DOT, and traffic laws. Ensured accurate product counts and delivered high-quality products to customers.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Excavation Foreman/Dump Truck Operator - Hadco Construction</div>
+                    <div class="job-date">6/7/18-5/3/19</div>
+                    <p>Excavation laborer responsible for installing utility mainlines in residential and commercial projects. Operated dump trucks and received a 1-year safety and maintenance award.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Sr. Cloud Storage Support Engineer/Coach-Trainer - Dell EMC</div>
+                    <div class="job-date">9/9/13-3/7/15</div>
+                    <p>Engineered and supported Symmetrix VMAX and VNX storage systems, along with Avamar backup solutions. Certified in VMware/Cisco Converged Enterprises. Worked on civilian and federal contracts with SSI clearance.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">IT Reverse Vending Machine Helpdesk/Cloud Solutions Engineer - rePlanet USA</div>
+                    <div class="job-date">3/3/12-7/15/13</div>
+                    <p>Managed electronic equipment for 170 recycling centers, including cell phones, tablets, and touchscreens. Performed imaging using Clonezilla and administered password resets for Active Directory/Office 365. Scheduled technicians for equipment repairs and managed Verizon accounts for field managers.</p>
+                </div>
+                <div class="job">
+                    <div class="job-title">Blackhawk Navigation Systems Repairer (35Q) - US Army National Guard</div>
+                    <div class="job-date">12/17/98-12/17/06</div>
+                    <p>Confidential</p>
+                </div>
+            </div>
         </div>
         <div id="skills-page" class="page">
-            <h2>Skills Matches</h2>
-            <p>^-Room for more!</p>
+            <h2>Skills</h2>
             <ul>
+                <li>Cloud Storage Management</li>
+                <li>Data Center Infrastructure</li>
+                <li>SAN/NAS Storage</li>
+                <li>Converged Infrastructure</li>
+                <li>Hyper-Converged</li>
+                <li>Data Migration</li>
+                <li>Storage Automation</li>
+                <li>Storage Performance Optimization</li>
+                <li>SDS, Project Management</li>
+                <li>DCOPS</li>
+                <li>RSA - 2FA</li>
                 <li>Bash/Shell/Powershell</li>
-                <!-- Add more skills here -->
+                <li>TCP/IP</li>
+                <li>Load Balancers</li>
+                <li>Firewalls and Network Security-Cloud</li>
+                <li>Attention to Detail - Problem Solver</li>
+                <li>Analytical Thinking</li>
+                <li>Communication Skills - Technical</li>
+            </ul>
+            <h3>Cloud Infrastructure Management</h3>
+            <ul>
+                <li>VxBlock, Symmetrix, VNX, Avamar</li>
+                <li>Unisphere, ViPR, CloudIQ, DD, DPC</li>
+                <li>vRealize/vROps, PowerPath</li>
+                <li>vxBlock/VxRail, VMware, vCenter</li>
+                <li>Cisco/Brocade, VMware/Converged</li>
             </ul>
         </div>
         <div id="award-page" class="page">
-            <h2>EMC Silver Award</h2>
-            <!-- Add EMC Silver Award content here -->
+            <h2>Awards</h2>
+            <p>EMC Excellence @EMC, Silver Award for Brocade SAN Upgrades for Toyota, changing the change process globally for Toyota based on support.</p>
         </div>
     </div>
     <div id="left-arrow" class="nav-arrow">&#8249;</div>
     <div id="right-arrow" class="nav-arrow">&#8250;</div>
 
     <script>
-        // Galaxy animation script (same as before)
-        // ...
+        // Galaxy animation script
+        const canvas = document.getElementById('galaxy');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        const numStars = 1000;
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                speed: Math.random() * 0.5
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+                star.x += star.speed;
+                if (star.x > canvas.width) star.x = 0;
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        drawStars();
 
         // Page navigation
         const pages = ['resume-page', 'skills-page', 'award-page'];
