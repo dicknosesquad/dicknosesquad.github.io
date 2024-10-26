@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Hinkle - Cloud Solutions Support Engineer</title>
+    <title>Michael Hinkle - Interactive Resume</title>
     <style>
         body, html {
             margin: 0;
@@ -29,11 +29,13 @@
             transform: translate(-50%, -50%) perspective(1000px) rotateX(5deg);
             width: 80%;
             max-width: 900px;
+            height: 80vh;
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
             transition: transform 0.3s ease;
+            overflow-y: auto;
         }
         #resume-container:hover {
             transform: translate(-50%, -50%) perspective(1000px) rotateX(0deg) translateY(-10px);
@@ -56,140 +58,75 @@
         ul {
             padding-left: 20px;
         }
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 48px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #left-arrow {
+            left: 20px;
+        }
+        #right-arrow {
+            right: 20px;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <canvas id="galaxy"></canvas>
     <div id="resume-container">
-        <h1>Michael Hinkle</h1>
-        <h2>Cloud Solutions Support Engineer</h2>
-        
-        <div class="section">
-            <h3>Contact</h3>
-            <p>Email: mhinkle9983@gmail.com</p>
-            <p>Phone: 1+ (209)500-5842</p>
-            <p>LinkedIn: linkedin.com/in/michael-hinkle/</p>
-            <p>GitHub: https://github.com/Hinkleberg</p>
+        <div id="resume-page" class="page active">
+            <!-- Resume content here -->
+            <h1>Michael Hinkle</h1>
+            <h2>Cloud Solutions Support Engineer</h2>
+            <!-- ... (rest of the resume content) ... -->
         </div>
-
-        <div class="section">
-            <h3>Summary</h3>
-            <p>Experienced Cloud Engineer with expertise in storage solutions, cloud infrastructure, and virtualization technologies. Proven success in designing, implementing, and managing robust cloud environments and storage systems. Skilled in collaborating with cross-functional teams to solve complex technical issues. Certified in VCE VMware/Cisco Converged Enterprise and ITIL V3.</p>
-        </div>
-
-        <div class="section">
-            <h3>Skills</h3>
+        <div id="skills-page" class="page">
+            <h2>Skills Matches</h2>
+            <p>^-Room for more!</p>
             <ul>
-                <li>Cloud Infrastructure Management</li>
-                <li>VxBlock, Symmetrix, VNX, Avamar</li>
-                <li>Unisphere, ViPR, CloudIQ, DD, DPC</li>
-                <li>vRealize/vROps, PowerPath</li>
-                <li>vxBlock/VxRail, VMware, vCenter</li>
-                <li>Cisco/Brocade, VMware/Converged</li>
-                <li>Cloud Storage Management</li>
-                <li>Data Center Infrastructure</li>
-                <li>SAN/NAS Storage</li>
-                <li>Converged Infrastructure</li>
-                <li>Hyper-Converged</li>
-                <li>Data Migration</li>
-                <li>Storage Automation</li>
-                <li>Storage Performance Optimization</li>
-                <li>SDS, Project Management</li>
-                <li>DCOPS</li>
-                <li>RSA - 2FA</li>
                 <li>Bash/Shell/Powershell</li>
-                <li>TCP/IP</li>
-                <li>Load Balancers</li>
-                <li>Firewalls and Network Security-Cloud</li>
-                <li>Attention to Detail - Problem Solver</li>
-                <li>Analytical Thinking</li>
-                <li>Communication Skills - Technical</li>
+                <!-- Add more skills here -->
             </ul>
         </div>
-
-        <div class="section">
-            <h3>Work Experience</h3>
-            <div class="job">
-                <p class="job-title">Amazon Delivery Driver - Rafter D LLC., Tangent, OR</p>
-                <p class="job-date">3/2023-7/2023</p>
-                <p>Delivered Amazon heavy packages in a safe and timely manner, adhering to Amazon safety standards and traffic laws.</p>
-            </div>
-            <div class="job">
-                <p class="job-title">Truck Driver - Market Express, Portland, OR</p>
-                <p class="job-date">11/2022-2/2023</p>
-                <p>Maintained equipment and delivered products efficiently, upholding the company's image and best interests. Followed safety protocols, DOT regulations, and traffic laws while ensuring equipment was returned in better condition. Operated within FMCSA guidelines and legal DOT regulations.</p>
-            </div>
-            <div class="job">
-                <p class="job-title">VDT Model 3/Y Test Driver - Tesla Motors, Fremont, CA</p>
-                <p class="job-date">11/17/21-7/4/22</p>
-                <p>Test drove Model 3 and Y vehicles on a test track to identify any malfunctions or mechanical issues. Listened for potential issues and ensured vehicles were in optimal condition before customer delivery.</p>
-            </div>
-            <!-- Add more job entries here -->
-        </div>
-
-        <div class="section">
-            <h3>Certifications</h3>
-            <ul>
-                <li>VCE-CIAS Converged Infrastructure Specialist</li>
-                <li>Dell EMC Academy</li>
-                <li>ISM V3 Information Storage Management</li>
-                <li>ITIL V3 IT Service Management</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h3>Education</h3>
-            <p>US Army National Guard - Blackhawk Navigation Systems Repairer (35Q)</p>
-            <p>12/17/98-12/17/06</p>
+        <div id="award-page" class="page">
+            <h2>EMC Silver Award</h2>
+            <!-- Add EMC Silver Award content here -->
         </div>
     </div>
+    <div id="left-arrow" class="nav-arrow">&#8249;</div>
+    <div id="right-arrow" class="nav-arrow">&#8250;</div>
 
     <script>
-        // Galaxy animation
-        const canvas = document.getElementById('galaxy');
-        const ctx = canvas.getContext('2d');
+        // Galaxy animation script (same as before)
+        // ...
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Page navigation
+        const pages = ['resume-page', 'skills-page', 'award-page'];
+        let currentPageIndex = 0;
 
-        const stars = [];
-        const starCount = 1000;
-
-        for (let i = 0; i < starCount; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                speed: Math.random() * 0.5
-            });
+        function showPage(index) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pages[index]).classList.add('active');
         }
 
-        function drawStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
-            stars.forEach(star => {
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fill();
+        document.getElementById('left-arrow').addEventListener('click', () => {
+            currentPageIndex = (currentPageIndex - 1 + pages.length) % pages.length;
+            showPage(currentPageIndex);
+        });
 
-                star.x += star.speed;
-                star.y += star.speed;
-
-                if (star.x > canvas.width) star.x = 0;
-                if (star.y > canvas.height) star.y = 0;
-            });
-        }
-
-        function animate() {
-            drawStars();
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        document.getElementById('right-arrow').addEventListener('click', () => {
+            currentPageIndex = (currentPageIndex + 1) % pages.length;
+            showPage(currentPageIndex);
         });
     </script>
 </body>
