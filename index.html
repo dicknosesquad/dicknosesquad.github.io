@@ -3,48 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Preview</title>
+    <title>Michael Hinkle - Resume</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
-            padding: 20px;
-            display: flex;
-            height: 100vh;
-        }
-        #editor, #preview {
-            width: 50%;
+            padding: 0;
             height: 100%;
-            padding: 10px;
-            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-        #editor {
-            resize: none;
-            border: 1px solid #ccc;
+        #gameCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
-        #preview {
-            border: 1px solid #ccc;
+        #resume {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            max-height: 80vh;
             overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+        #resume:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .job {
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
-    <textarea id="editor" placeholder="Enter your Markdown here..."></textarea>
-    <div id="preview"></div>
+    <canvas id="gameCanvas"></canvas>
+    <div id="resume">
+        <h1>Michael Hinkle</h1>
+        <p>mhinkle9983@gmail.com ❖ (209) 500-5842 ❖ Modesto, CA ❖ <a href="#">GitHub</a>; <a href="#">LinkedIn</a></p>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <div class="section">
+            <h2>CERTIFICATIONS, SKILLS & INTERESTS</h2>
+            <ul>
+                <li>Certifications: VCE-CIAS Certified Converged Infrastructure Administration Specialist</li>
+                <li>Skills: Attention to Detail, Time Management, Problem Solving Skills, Analytical Thinking, Adaptability, Conflict Resolution (Important), Cooperation, Teamwork, Leadership, Evolving</li>
+                <li>Tech: Symmetrix; VNX; Avamar; vPLEX; VMware, Migrations, Bash, Firewalls and Network Security (Cloud), Load Balancers, Attention to Detail, Analytical Thinking, Storage Automation, SAN/NAS Storage specialist.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>WORK EXPERIENCE</h2>
+            <div class="job">
+                <h3>Dell EMC</h3>
+                <p>Senior Cloud Storage Support Engineer | September 2013 - March 2015 | Hybrid Draper, UT</p>
+                <ul>
+                    <li>Architecture design of Managed/Federated accounts and post implementation support, for our partnered Storage Providers, Field Technicians, & Account Managers.</li>
+                    <li>Created change control processes for firmware upgrades on Brocade Globally, saving time per upgrade on Core/Edge Brocade Switches, saving possible downtimes.</li>
+                    <li>Fielded E-Mails and inbound phone calls while performing upgrades with C-Suite Executives.</li>
+                    <li>Stack: VMAX; VNX; vPlex; Avamar; Cisco/Brocade Firmware Upgrades.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>rePlanet USA</h3>
+                <p>IT and RVM Helpdesk Engineer | March 2012 - July 2013 | Corona, CA</p>
+                <ul>
+                    <li>Conducted 280 Recycling Centers technology hardware in California. Asset tracking, inventory, and hardware analysis were just a few of my duties.</li>
+                    <li>Tracked and monitored product data analysis, giving recycling information, and projected sales/recycling informatics to companies for Optimizing sales, based on demographics of recycled containers.</li>
+                    <li>Developed strategies that helped usher in big data for corporations seeking further investments based on analytics for each recycling center and their locations.</li>
+                    <li>Reimaging of AIO touchscreen panels with embedded CE, Iphones/Android Tablets over Samba, with custom image installations.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>United States Army National Guard</h3>
+                <p>Navigation Systems Repair (Blackhawks) (Spc, E-4) | December 1998 – December 2006 | Owasso, OK</p>
+                <ul>
+                    <li>Repaired Navigation Systems on Blackhawk Helicopters</li>
+                    <li>Maintained 100% availability of Navigation Systems, vehicles, and equipment at all times to ensure quick delivery in any circumstance.</li>
+                    <li>Developed, tested, handled, stored, and disposed of electronics/equipment (Classified)</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Hadco Construction</h3>
+                <p>Excavation Laborer | June 2015 – March 2016 | Lehi, UT</p>
+                <ul>
+                    <li>Installed, maintained, trenched, and dug holes for foundation excavation for both Residential and Commercial locations.</li>
+                    <li>Assist Excavation Operators, by operating transits/lasers to make sure that the foundation digs are in proper dimensions.</li>
+                    <li>Conduct daily safety activities to make sure that digs are safe to operate within. Installed underground utilities, septic systems, and water mains to the foundation pre-build.</li>
+                </ul>
+                <p>Dump Truck Operator | Oct 2018 – July 2019</p>
+                <ul>
+                    <li>Prior to my promotion to Truck Driver, I performed my duties and was allowed to participate in a CDL Program based on performance.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>EDUCATION</h2>
+            <p>Thunderbird Academy - High School Diploma (Aviation)(Construction) | Pryor, OK</p>
+        </div>
+    </div>
+
     <script>
-        const editor = document.getElementById('editor');
-        const preview = document.getElementById('preview');
+        // Game setup
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 10,
+            dx: 2,
+            dy: -2
+        };
+        const gravity = 0.1;
+        const bounce = 0.8;
 
-        function updatePreview() {
-            preview.innerHTML = marked.parse(editor.value);
+        function updateGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ball.dy += gravity;
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+                ball.dx *= -1;
+            }
+            if (ball.y + ball.radius > canvas.height) {
+                ball.y = canvas.height - ball.radius;
+                ball.dy *= -bounce;
+            }
+
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 150, 220, 0.5)';
+            ctx.fill();
+            ctx.closePath();
+
+            requestAnimationFrame(updateGame);
         }
 
-        editor.addEventListener('input', updatePreview);
+        updateGame();
 
-        // Initial preview
-        updatePreview();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
