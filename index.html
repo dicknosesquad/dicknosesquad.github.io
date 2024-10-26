@@ -195,30 +195,56 @@
 
         const stars = [];
         const numStars = 1000;
+        let rotation = 0;
 
         for (let i = 0; i < numStars; i++) {
             stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5,
-                speed: Math.random() * 0.5
+                x: Math.random() * canvas.width - canvas.width / 2,
+                y: Math.random() * canvas.height - canvas.height / 2,
+                z: Math.random() * canvas.width,
+                radius: Math.random() * 1.5
             });
         }
 
         function drawStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(rotation);
+            ctx.translate(-canvas.width / 2, -canvas.height / 2);
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
             ctx.fillStyle = 'white';
             stars.forEach(star => {
                 ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.arc(star.x + canvas.width / 2, star.y + canvas.height / 2, star.radius, 0, Math.PI * 2);
                 ctx.fill();
-                star.x += star.speed;
-                if (star.x > canvas.width) star.x = 0;
+
+                star.z -= 0.2;
+                if (star.z <= 0) {
+                    star.z = canvas.width;
+                }
+
+                star.x = star.x / star.z;
+                star.y = star.y / star.z;
+
+                star.radius = star.radius / star.z * canvas.width * 0.1;
             });
+
+            ctx.restore();
+
+            rotation += 0.0001;
             requestAnimationFrame(drawStars);
         }
 
         drawStars();
+
+        // Resize event listener
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
         // Page navigation
         const pages = ['resume-page', 'skills-page', 'award-page'];
