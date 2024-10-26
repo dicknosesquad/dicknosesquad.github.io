@@ -26,7 +26,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) perspective(1000px) rotateX(5deg);
             width: 80%;
             max-width: 900px;
             height: 80vh;
@@ -34,7 +34,11 @@
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
+            transition: transform 0.3s ease;
             overflow-y: auto;
+        }
+        #resume-container:hover {
+            transform: translate(-50%, -50%) perspective(1000px) rotateX(0deg) translateY(-10px);
         }
         h1, h2 {
             color: #2c3e50;
@@ -89,7 +93,7 @@
     <div id="resume-container">
         <div id="resume-page" class="page active">
             <h1>Michael Hinkle</h1>
-            <h2>Cloud Solutions Support Specialist</h2>
+            <h2>Cloud Solutions Support Engineer</h2>
             <div class="section">
                 <div class="job">
                     <div class="job-title">Amazon Delivery Driver - Rafter D LLC.</div>
@@ -127,7 +131,7 @@
                     <p>Excavation laborer responsible for installing utility mainlines in residential and commercial projects. Operated dump trucks and received a 1-year safety and maintenance award.</p>
                 </div>
                 <div class="job">
-                    <div class="job-title">Sr. Cloud Storage Support Specialist/Coach-Trainer - Dell EMC</div>
+                    <div class="job-title">Sr. Cloud Storage Support Engineer/Coach-Trainer - Dell EMC</div>
                     <div class="job-date">9/9/13-3/7/15</div>
                     <p>Engineered and supported Symmetrix VMAX and VNX storage systems, along with Avamar backup solutions. Certified in VMware/Cisco Converged Enterprises. Worked on civilian and federal contracts with SSI clearance.</p>
                 </div>
@@ -144,7 +148,7 @@
             </div>
         </div>
         <div id="skills-page" class="page">
-            <h2>Skills</h2>
+            <h2>Skills Matches</h2>
             <ul>
                 <li>Cloud Storage Management</li>
                 <li>Data Center Infrastructure</li>
@@ -175,7 +179,7 @@
             </ul>
         </div>
         <div id="award-page" class="page">
-            <h2>Awards</h2>
+            <h2>EMC Silver Award</h2>
             <p>EMC Excellence @EMC, Silver Award for Brocade SAN Upgrades for Toyota, changing the change process globally for Toyota based on support.</p>
         </div>
     </div>
