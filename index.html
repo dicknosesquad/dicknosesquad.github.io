@@ -21,14 +21,57 @@
             background: var(--background);
             color: var(--text);
             min-height: 100vh;
+            overflow: hidden;
         }
 
-        #app {
+        #gameCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .resume-container {
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            justify-content: space-between;
+            height: 100vh;
+            overflow-y: auto;
         }
 
+        .resume {
+            width: 48%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-height: 90vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .resume:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .job {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* Navigation styles */
         .nav-container {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 1rem;
@@ -67,72 +110,6 @@
             width: 100%;
             box-sizing: border-box;
         }
-
-        .tool-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-top: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .input-group {
-            margin-bottom: 1rem;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            margin-top: 0.5rem;
-        }
-
-        button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .resume-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        #gameCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        .chart-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .result-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
     </style>
 </head>
 <body>
@@ -144,151 +121,171 @@
                 <button class="nav-button" onclick="showTool('monetization')">Content Monetization</button>
                 <button class="nav-button" onclick="showTool('domain')">Domain Value</button>
                 <button class="nav-button" onclick="showTool('freelance')">Freelance Costs</button>
-                <button class="nav-button" onclick="showTool('game')">HTML5 Game</button>
-                <button class="nav-button" onclick="showTool('market')">Market Analysis</button>
-                <button class="nav-button" onclick="showTool('price')">Price Comparison</button>
-                <button class="nav-button" onclick="showTool('seo')">SEO Analysis</button>
-                <button class="nav-button" onclick="showTool('social')">Social Analytics</button>
-                <button class="nav-button" onclick="showTool('accessibility')">Accessibility</button>
             </div>
         </nav>
         <main class="content" id="mainContent">
-            <!-- Dynamic content will be loaded here -->
+            <div class="resume-container">
+                <div class="resume" id="resume1">
+                    <h1>Michael H.</h1>
+                    <p>❖ Modesto, CA ❖ <a href="#">GitHub</a>; 
+                </div>
+                <div class="resume" id="resume2">
+                    <h1>Michael H.</h1>
+                    <h2>Cloud Solutions Support Specialist</h2>
+                    <p>Experienced Cloud Specialist with expertise in storage solutions, cloud infrastructure, and virtualization technologies. Proven success in designing, implementing, and managing robust cloud environments and storage systems.</p>
+                </div>
+            </div>
         </main>
     </div>
 
     <script>
-        // Tool templates and functionality
-        const toolTemplates = {
-            resume: `
-                <div class="resume-section">
-                    ${document.querySelector('.resume-container').innerHTML}
-                </div>
-            `,
-            monetization: `
-                <div class="tool-container">
-                    <h2>Content Monetization Analysis Tool</h2>
-                    <div class="input-group">
-                        <input type="url" placeholder="Enter content URL" id="contentUrl">
-                        <select id="contentType">
-                            <option value="blog">Blog Post</option>
-                            <option value="video">Video Content</option>
-                            <option value="podcast">Podcast</option>
-                        </select>
-                        <button onclick="analyzeMonetization()">Analyze Monetization Potential</button>
-                    </div>
-                    <div id="monetizationResults" class="result-container"></div>
-                </div>
-            `,
-            domain: `
-                <div class="tool-container">
-                    <h2>Domain Value Estimator</h2>
-                    <div class="input-group">
-                        <input type="text" placeholder="Enter domain name" id="domainName">
-                        <button onclick="estimateDomainValue()">Estimate Value</button>
-                    </div>
-                    <div id="domainResults" class="result-container"></div>
-                </div>
-            `,
-            // Add similar templates for other tools...
-        };
-
-        // Tool functions
-        function showTool(toolName) {
-            const content = document.getElementById('mainContent');
-            content.innerHTML = toolTemplates[toolName] || 'Tool coming soon!';
-        }
-
-        // Initialize with resume view
-        showTool('resume');
-
-        // Game canvas background
+        // Game setup
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        const balls = [];
+        const gravity = 0.1;
+        const bounce = 0.8;
+        const friction = 0.99;
 
-        // Particle system
-        const particles = [];
-        for (let i = 0; i < 50; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 3 + 1,
-                dx: (Math.random() - 0.5) * 2,
-                dy: (Math.random() - 0.5) * 2,
-                color: `hsla(${Math.random() * 360}, 70%, 60%, 0.5)`
-            });
-        }
+        // Ball class for better organization
+        class Ball {
+            constructor(x, y, radius) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.dx = (Math.random() - 0.5) * 4;
+                this.dy = (Math.random() - 0.5) * 4;
+            }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.x += particle.dx;
-                particle.y += particle.dy;
+            update() {
+                this.dy += gravity;
+                this.dx *= friction;
+                this.dy *= friction;
+                this.x += this.dx;
+                this.y += this.dy;
 
-                if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
-                if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = particle.color;
-                ctx.fill();
-            });
-
-            requestAnimationFrame(animateParticles);
-        }
-
-        animateParticles();
-
-        // Tool implementation functions
-        function analyzeMonetization() {
-            const url = document.getElementById('contentUrl').value;
-            const type = document.getElementById('contentType').value;
-            const results = document.getElementById('monetizationResults');
-            
-            // Simulate analysis
-            results.innerHTML = `
-                <h3>Monetization Analysis Results</h3>
-                <p>Estimated monthly revenue: $500-$1,500</p>
-                <p>Recommended platforms: AdSense, Affiliate Marketing</p>
-                <div class="chart-container">
-                    <canvas id="monetizationChart"></canvas>
-                </div>
-            `;
-
-            new Chart(document.getElementById('monetizationChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['AdSense', 'Affiliates', 'Sponsorships', 'Direct'],
-                    datasets: [{
-                        label: 'Potential Revenue Streams ($)',
-                        data: [500, 700, 300, 200],
-                        backgroundColor: ['#2563eb', '#7c3aed', '#f59e0b', '#10b981']
-                    }]
+                // Wall collisions
+                if (this.x + this.radius > canvas.width) {
+                    this.x = canvas.width - this.radius;
+                    this.dx *= -bounce;
                 }
-            });
+                if (this.x - this.radius < 0) {
+                    this.x = this.radius;
+                    this.dx *= -bounce;
+                }
+                if (this.y + this.radius > canvas.height) {
+                    this.y = canvas.height - this.radius;
+                    this.dy *= -bounce;
+                }
+                if (this.y - this.radius < 0) {
+                    this.y = this.radius;
+                    this.dy *= -bounce;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 150, 220, 0.5)';
+                ctx.fill();
+                ctx.closePath();
+            }
         }
 
-        function estimateDomainValue() {
-            const domain = document.getElementById('domainName').value;
-            const results = document.getElementById('domainResults');
-            
-            // Simulate estimation
-            results.innerHTML = `
-                <h3>Domain Value Estimation</h3>
-                <p>Estimated value: $2,500-$5,000</p>
-                <p>Factors considered: Age, Length, Keywords, TLD</p>
-            `;
+        // Create initial balls
+        for (let i = 0; i < 11; i++) {
+            balls.push(new Ball(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                10
+            ));
         }
 
-        // Add more tool functions as needed...
+        // Check collision between two balls
+        function checkCollision(b1, b2) {
+            const dx = b2.x - b1.x;
+            const dy = b2.y - b1.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
+            if (distance < b1.radius + b2.radius) {
+                // Collision detected - calculate new velocities
+                const angle = Math.atan2(dy, dx);
+                const sin = Math.sin(angle);
+                const cos = Math.cos(angle);
+
+                // Rotate velocities
+                const vx1 = b1.dx * cos + b1.dy * sin;
+                const vy1 = b1.dy * cos - b1.dx * sin;
+                const vx2 = b2.dx * cos + b2.dy * sin;
+                const vy2 = b2.dy * cos - b2.dx * sin;
+
+                // Swap the velocity components
+                b1.dx = vx2 * cos - vy1 * sin;
+                b1.dy = vy1 * cos + vx2 * sin;
+                b2.dx = vx1 * cos - vy2 * sin;
+                b2.dy = vy2 * cos + vx1 * sin;
+
+                // Move balls apart to prevent sticking
+                const overlap = (b1.radius + b2.radius - distance) / 2;
+                const moveX = overlap * cos;
+                const moveY = overlap * sin;
+
+                b1.x -= moveX;
+                b1.y -= moveY;
+                b2.x += moveX;
+                b2.y += moveY;
+            }
+        }
+
+        function updateGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update ball positions and check collisions
+            for (let i = 0; i < balls.length; i++) {
+                balls[i].update();
+                
+                // Check collisions with other balls
+                for (let j = i + 1; j < balls.length; j++) {
+                    checkCollision(balls[i], balls[j]);
+                }
+                
+                balls[i].draw();
+            }
+
+            requestAnimationFrame(updateGame);
+        }
+
+        updateGame();
+
+        // Handle window resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
+
+        // Tool templates and functionality
+        const toolTemplates = {
+            resume: `
+                <div class="resume-container">
+                    <div class="resume" id="resume1">
+                        <h1>Michael Hinkle</h1>
+                        <p>❖ Modesto, CA ❖ <a href="#">GitHub</a>; <a href="#">LinkedIn</a></p>
+                    </div>
+                    <div class="resume" id="resume2">
+                        <h1>Michael H.</h1>
+                        <h2>Cloud Solutions Support Specialist (L5)</h2>
+                        <p>Experienced Cloud Engineer with expertise in storage solutions, cloud infrastructure, and virtualization technologies.</p>
+                    </div>
+                </div>
+            `
+        };
+
+        function showTool(toolName) {
+            const content = document.getElementById('mainContent');
+            content.innerHTML = toolTemplates[toolName] || 'Tool coming soon!';
+        }
     </script>
 </body>
 </html>
