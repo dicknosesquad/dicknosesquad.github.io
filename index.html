@@ -8,19 +8,35 @@
 <body>
     <h1>DCOPS Security Testing Dashboard</h1>
     <div class="grid-container">
+        <!-- HTTP Header Analysis -->
         <div class="grid-item">
             <h2>HTTP Header Analysis</h2>
+            <input type="text" id="header-url" placeholder="Enter URL">
             <button onclick="runHeaderTest()">Run Test</button>
             <div id="header-results"></div>
         </div>
+        
+        <!-- Content Security Policy (CSP) Test -->
         <div class="grid-item">
             <h2>Content Security Policy (CSP)</h2>
+            <input type="text" id="csp-url" placeholder="Enter URL">
             <button onclick="runCSPTest()">Run Test</button>
             <div id="csp-results"></div>
         </div>
-        <!-- Additional tools and setup guides here -->
+        
+        <!-- Placeholder boxes for OWASP ZAP, Wireshark, etc. -->
+        <!-- Add more similar sections as needed -->
+        
+        <!-- Log Viewer -->
+        <div class="grid-item">
+            <h2>Test Logs</h2>
+            <pre id="log-viewer"></pre>
+            <button onclick="viewLog()">Refresh Logs</button>
+        </div>
     </div>
+
     <script src="app.js"></script>
     <script src="scripts/security-checks.js"></script>
+    <script src="scripts/log-manager.js"></script>
 </body>
 </html>
