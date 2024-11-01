@@ -21,6 +21,7 @@
             margin: 20px 0;
             padding: 10px;
             border: 1px solid #ccc;
+            position: relative;
         }
         footer {
             text-align: center;
@@ -34,6 +35,22 @@
             border-top: 1px solid #ccc;
             padding-top: 10px;
         }
+        .tool-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .tool {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .tool:last-child {
+            margin-right: 0;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -41,30 +58,38 @@
         <h1>Apple Penetration Testing Resources</h1>
     </header>
     <main>
-        <section>
-            <h2>Nmap</h2>
-            <p>Nmap is a powerful network scanning tool.</p>
-            <a href="https://nmap.org/" target="_blank">Visit Nmap Official Site</a>
+        <section class="tool-container">
+            <div class="tool">
+                <h2>Nmap</h2>
+                <p>Nmap is a powerful network scanning tool.</p>
+                <textarea id="nmapCommand" placeholder="Enter Nmap command here..."></textarea>
+                <button onclick="runNmap()">Run Nmap</button>
+                <div id="nmapResults"></div>
+            </div>
+            <div class="tool">
+                <h2>Burp Suite</h2>
+                <p>Burp Suite is an integrated platform for web application security testing.</p>
+                <textarea id="burpInput" placeholder="Enter Burp command or request..."></textarea>
+                <button onclick="runBurp()">Submit Burp Request</button>
+                <div id="burpResults"></div>
+            </div>
+            <div class="tool">
+                <h2>SQLmap</h2>
+                <p>SQLmap automates SQL injection testing.</p>
+                <textarea id="sqlmapCommand" placeholder="Enter SQLmap command here..."></textarea>
+                <button onclick="runSqlmap()">Run SQLmap</button>
+                <div id="sqlmapResults"></div>
+            </div>
         </section>
-        <section>
-            <h2>Burp Suite</h2>
-            <p>Burp Suite is an integrated platform for performing web application security testing.</p>
-            <a href="https://portswigger.net/burp" target="_blank">Visit Burp Suite Official Site</a>
-        </section>
-        <section>
-            <h2>SQLmap</h2>
-            <p>SQLmap automates the process of detecting and exploiting SQL injection vulnerabilities.</p>
-            <a href="http://sqlmap.org/" target="_blank">Visit SQLmap Official Site</a>
-        </section>
-        <section>
-            <h2>Metasploit</h2>
-            <p>Metasploit is a penetration testing framework for discovering and exploiting vulnerabilities.</p>
-            <a href="https://www.rapid7.com/products/metasploit/" target="_blank">Visit Metasploit Official Site</a>
-        </section>
-        <section>
-            <h2>OWASP ZAP</h2>
-            <p>OWASP ZAP is an open-source web application security scanner.</p>
-            <a href="https://www.zaproxy.org/" target="_blank">Visit OWASP ZAP Official Site</a>
+        
+        <section class="tool-container">
+            <div class="tool">
+                <h2>Metasploit</h2>
+                <p>Metasploit is a penetration testing framework.</p>
+                <textarea id="metasploitCommand" placeholder="Enter Metasploit command here..."></textarea>
+                <button onclick="runMetasploit()">Run Metasploit</button>
+                <div id="metasploitResults"></div>
+            </div>
         </section>
         
         <section>
@@ -89,14 +114,35 @@
     </footer>
     
     <script>
+        function runNmap() {
+            const command = document.getElementById('nmapCommand').value;
+            // This would be sent to the backend for processing
+            document.getElementById('nmapResults').innerHTML = `<p>Running Nmap command: ${command}</p>`;
+        }
+        
+        function runBurp() {
+            const input = document.getElementById('burpInput').value;
+            // This would be sent to the backend for processing
+            document.getElementById('burpResults').innerHTML = `<p>Submitting Burp request: ${input}</p>`;
+        }
+        
+        function runSqlmap() {
+            const command = document.getElementById('sqlmapCommand').value;
+            // This would be sent to the backend for processing
+            document.getElementById('sqlmapResults').innerHTML = `<p>Running SQLmap command: ${command}</p>`;
+        }
+        
+        function runMetasploit() {
+            const command = document.getElementById('metasploitCommand').value;
+            // This would be sent to the backend for processing
+            document.getElementById('metasploitResults').innerHTML = `<p>Running Metasploit command: ${command}</p>`;
+        }
+
         document.getElementById('testForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const target = document.getElementById('target').value;
-            // Here you would send this target to your backend for testing
-            // For demonstration, we will just output it
             document.getElementById('results').innerHTML = `<p>Submitted for testing: ${target}</p>`;
             
-            // Simulate fetching results from a server
             fetch(`https://your-backend-api.com/reports?target=${encodeURIComponent(target)}`)
                 .then(response => response.json())
                 .then(data => {
