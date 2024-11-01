@@ -3,47 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penetration Testing Tools</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <title>Apple Penetration Testing Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background: #007ACC;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        section {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Penetration Testing Tools for Ethical Hacking</h1>
+        <h1>Apple Penetration Testing Resources</h1>
     </header>
     <main>
         <section>
             <h2>Nmap</h2>
-            <p>Nmap is a powerful network scanning tool used to discover hosts and services on a network.</p>
+            <p>Nmap is a powerful network scanning tool.</p>
             <a href="https://nmap.org/" target="_blank">Visit Nmap Official Site</a>
         </section>
         <section>
             <h2>Burp Suite</h2>
-            <p>Burp Suite is an integrated platform for performing security testing of web applications.</p>
+            <p>Burp Suite is an integrated platform for performing web application security testing.</p>
             <a href="https://portswigger.net/burp" target="_blank">Visit Burp Suite Official Site</a>
         </section>
         <section>
-            <h2>OpenSSL</h2>
-            <p>OpenSSL is a robust toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols.</p>
-            <a href="https://www.openssl.org/" target="_blank">Visit OpenSSL Official Site</a>
-        </section>
-        <section>
-            <h2>FileZilla</h2>
-            <p>FileZilla is a free FTP solution that allows you to transfer files securely.</p>
-            <a href="https://filezilla-project.org/" target="_blank">Visit FileZilla Official Site</a>
+            <h2>SQLmap</h2>
+            <p>SQLmap automates the process of detecting and exploiting SQL injection vulnerabilities.</p>
+            <a href="http://sqlmap.org/" target="_blank">Visit SQLmap Official Site</a>
         </section>
         <section>
             <h2>Metasploit</h2>
-            <p>Metasploit is a penetration testing framework that makes discovering and exploiting vulnerabilities easier.</p>
+            <p>Metasploit is a penetration testing framework for discovering and exploiting vulnerabilities.</p>
             <a href="https://www.rapid7.com/products/metasploit/" target="_blank">Visit Metasploit Official Site</a>
         </section>
         <section>
-            <h2>SQLmap</h2>
-            <p>SQLmap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities.</p>
-            <a href="http://sqlmap.org/" target="_blank">Visit SQLmap Official Site</a>
+            <h2>OWASP ZAP</h2>
+            <p>OWASP ZAP is an open-source web application security scanner.</p>
+            <a href="https://www.zaproxy.org/" target="_blank">Visit OWASP ZAP Official Site</a>
+        </section>
+        
+        <section>
+            <h2>Submit a Test</h2>
+            <form id="testForm">
+                <div class="form-group">
+                    <label for="target">Enter URL, IP Address, or Domain:</label>
+                    <input type="text" id="target" name="target" required>
+                </div>
+                <button type="submit">Submit for Testing</button>
+            </form>
+            <div id="results"></div>
         </section>
     </main>
     <footer>
-        <p>Disclaimer: Use these tools ethically and only with permission.</p>
+        <p>Disclaimer: Use these resources ethically and with permission.</p>
     </footer>
+    
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const target = document.getElementById('target').value;
+            // Here you would send this target to your backend for testing
+            // For demonstration, we will just output it
+            document.getElementById('results').innerHTML = `<p>Submitted for testing: ${target}</p>`;
+            // Add your backend logic to actually perform tests here
+        });
+    </script>
 </body>
 </html>
