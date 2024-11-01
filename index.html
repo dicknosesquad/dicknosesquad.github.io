@@ -2,41 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DCOPS Security Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penetration Testing Tools</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
-    <h1>DCOPS Security Testing Dashboard</h1>
-    <div class="grid-container">
-        <!-- HTTP Header Analysis -->
-        <div class="grid-item">
-            <h2>HTTP Header Analysis</h2>
-            <input type="text" id="header-url" placeholder="Enter URL">
-            <button onclick="runHeaderTest()">Run Test</button>
-            <div id="header-results"></div>
-        </div>
-        
-        <!-- Content Security Policy (CSP) Test -->
-        <div class="grid-item">
-            <h2>Content Security Policy (CSP)</h2>
-            <input type="text" id="csp-url" placeholder="Enter URL">
-            <button onclick="runCSPTest()">Run Test</button>
-            <div id="csp-results"></div>
-        </div>
-        
-        <!-- Placeholder boxes for OWASP ZAP, Wireshark, etc. -->
-        <!-- Add more similar sections as needed -->
-        
-        <!-- Log Viewer -->
-        <div class="grid-item">
-            <h2>Test Logs</h2>
-            <pre id="log-viewer"></pre>
-            <button onclick="viewLog()">Refresh Logs</button>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
-    <script src="scripts/security-checks.js"></script>
-    <script src="scripts/log-manager.js"></script>
+    <header>
+        <h1>Penetration Testing Tools for Ethical Hacking</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Nmap</h2>
+            <p>Nmap is a powerful network scanning tool used to discover hosts and services on a network.</p>
+            <a href="https://nmap.org/" target="_blank">Visit Nmap Official Site</a>
+        </section>
+        <section>
+            <h2>Burp Suite</h2>
+            <p>Burp Suite is an integrated platform for performing security testing of web applications.</p>
+            <a href="https://portswigger.net/burp" target="_blank">Visit Burp Suite Official Site</a>
+        </section>
+        <section>
+            <h2>OpenSSL</h2>
+            <p>OpenSSL is a robust toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols.</p>
+            <a href="https://www.openssl.org/" target="_blank">Visit OpenSSL Official Site</a>
+        </section>
+        <section>
+            <h2>FileZilla</h2>
+            <p>FileZilla is a free FTP solution that allows you to transfer files securely.</p>
+            <a href="https://filezilla-project.org/" target="_blank">Visit FileZilla Official Site</a>
+        </section>
+        <section>
+            <h2>Metasploit</h2>
+            <p>Metasploit is a penetration testing framework that makes discovering and exploiting vulnerabilities easier.</p>
+            <a href="https://www.rapid7.com/products/metasploit/" target="_blank">Visit Metasploit Official Site</a>
+        </section>
+        <section>
+            <h2>SQLmap</h2>
+            <p>SQLmap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities.</p>
+            <a href="http://sqlmap.org/" target="_blank">Visit SQLmap Official Site</a>
+        </section>
+    </main>
+    <footer>
+        <p>Disclaimer: Use these tools ethically and only with permission.</p>
+    </footer>
 </body>
 </html>
