@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Penetration Testing Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background: #007ACC;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        section {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        .report {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .tool-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .tool {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .tool:last-child {
+            margin-right: 0;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Apple Penetration Testing Resources</h1>
+    </header>
+    <main>
+        <section class="tool-container">
+            <div class="tool">
+                <h2>Nmap</h2>
+                <p>Nmap is a powerful network scanning tool.</p>
+                <textarea id="nmapCommand" placeholder="Enter Nmap command here..."></textarea>
+                <button onclick="runNmap()">Run Nmap</button>
+                <div id="nmapResults"></div>
+            </div>
+            <div class="tool">
+                <h2>Burp Suite</h2>
+                <p>Burp Suite is an integrated platform for web application security testing.</p>
+                <textarea id="burpInput" placeholder="Enter Burp command or request..."></textarea>
+                <button onclick="runBurp()">Submit Burp Request</button>
+                <div id="burpResults"></div>
+            </div>
+            <div class="tool">
+                <h2>SQLmap</h2>
+                <p>SQLmap automates SQL injection testing.</p>
+                <textarea id="sqlmapCommand" placeholder="Enter SQLmap command here..."></textarea>
+                <button onclick="runSqlmap()">Run SQLmap</button>
+                <div id="sqlmapResults"></div>
+            </div>
+        </section>
+        
+        <section class="tool-container">
+            <div class="tool">
+                <h2>Metasploit</h2>
+                <p>Metasploit is a penetration testing framework.</p>
+                <textarea id="metasploitCommand" placeholder="Enter Metasploit command here..."></textarea>
+                <button onclick="runMetasploit()">Run Metasploit</button>
+                <div id="metasploitResults"></div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Submit a Test</h2>
+            <form id="testForm">
+                <div class="form-group">
+                    <label for="target">Enter URL, IP Address, or Domain:</label>
+                    <input type="text" id="target" name="target" required>
+                </div>
+                <button type="submit">Submit for Testing</button>
+            </form>
+            <div id="results"></div>
+        </section>
+        
+        <section class="report">
+            <h2>Vulnerability Reports</h2>
+            <div id="reportLogs"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Disclaimer: Use these resources ethically and with permission.</p>
+    </footer>
+    
+    <script>
+        function runNmap() {
+            const command = document.getElementById('nmapCommand').value;
+            // This would be sent to the backend for processing
+            document.getElementById('nmapResults').innerHTML = `<p>Running Nmap command: ${command}</p>`;
+        }
+        
+        function runBurp() {
+            const input = document.getElementById('burpInput').value;
+            // This would be sent to the backend for processing
+            document.getElementById('burpResults').innerHTML = `<p>Submitting Burp request: ${input}</p>`;
+        }
+        
+        function runSqlmap() {
+            const command = document.getElementById('sqlmapCommand').value;
+            // This would be sent to the backend for processing
+            document.getElementById('sqlmapResults').innerHTML = `<p>Running SQLmap command: ${command}</p>`;
+        }
+        
+        function runMetasploit() {
+            const command = document.getElementById('metasploitCommand').value;
+            // This would be sent to the backend for processing
+            document.getElementById('metasploitResults').innerHTML = `<p>Running Metasploit command: ${command}</p>`;
+        }
+
+        document.getElementById('testForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const target = document.getElementById('target').value;
+            document.getElementById('results').innerHTML = `<p>Submitted for testing: ${target}</p>`;
+            
+            fetch(`https://your-backend-api.com/reports?target=${encodeURIComponent(target)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const reportLogs = document.getElementById('reportLogs');
+                    reportLogs.innerHTML = ''; // Clear previous logs
+                    data.reports.forEach(report => {
+                        reportLogs.innerHTML += `<p>${report}</p>`;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching reports:', error);
+                    document.getElementById('reportLogs').innerHTML = '<p>Error fetching reports. Please try again later.</p>';
+                });
+        });
+    </script>
+</body>
+</html>
