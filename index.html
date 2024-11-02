@@ -4,210 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penetration Testing Tools</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .output-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #f9f9f9;
-            white-space: pre-wrap; /* Preserve formatting */
-            position: relative; /* For absolute positioning of copy button */
-        }
-        .copy-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            padding: 5px 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="loginForm" class="form-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p id="error" class="error-message"></p>
+    </div>
 
-<h1>Penetration Testing Tools</h1>
+    <div id="appContainer" class="hidden">
+        <h1>Penetration Testing Tools</h1>
 
-<div id="nmap">
-    <h2>Nmap</h2>
-    <button onclick="runNmap()">Run Nmap Scan</button>
-    <div id="nmap-output">
-        <h3>Nmap Command Output:</h3>
-        <div class="output-box">
-            <button class="copy-button" onclick="copyOutput('nmap-output-box')">Copy Output</button>
-            <pre id="nmap-output-box">Waiting for command execution...</pre>
+        <div id="nmap">
+            <h2>Nmap</h2>
+            <input type="text" id="nmapInput" placeholder="Enter target for Nmap">
+            <button onclick="runNmap()">Run Nmap</button>
+            <pre id="nmapOutput"></pre>
         </div>
-    </div>
-</div>
 
-<div id="burp">
-    <h2>Burp Suite</h2>
-    <button onclick="runBurp()">Run Burp Suite Scan</button>
-    <div id="burp-output">
-        <h3>Burp Suite Command Output:</h3>
-        <div class="output-box">
-            <button class="copy-button" onclick="copyOutput('burp-output-box')">Copy Output</button>
-            <pre id="burp-output-box">Waiting for command execution...</pre>
+        <div id="burpSuite">
+            <h2>Burp Suite</h2>
+            <input type="text" id="burpInput" placeholder="Enter target for Burp Suite">
+            <button onclick="runBurp()">Run Burp Suite</button>
+            <pre id="burpOutput"></pre>
         </div>
-    </div>
-</div>
 
-<div id="openssl">
-    <h2>OpenSSL</h2>
-    <button onclick="runOpenSSL()">Run OpenSSL Command</button>
-    <div id="openssl-output">
-        <h3>OpenSSL Command Output:</h3>
-        <div class="output-box">
-            <button class="copy-button" onclick="copyOutput('openssl-output-box')">Copy Output</button>
-            <pre id="openssl-output-box">Waiting for command execution...</pre>
+        <div id="metasploit">
+            <h2>Metasploit</h2>
+            <input type="text" id="metasploitInput" placeholder="Enter target for Metasploit">
+            <button onclick="runMetasploit()">Run Metasploit</button>
+            <pre id="metasploitOutput"></pre>
         </div>
-    </div>
-</div>
 
-<div id="filezilla">
-    <h2>Filezilla</h2>
-    <button onclick="runFilezilla()">Run Filezilla Command</button>
-    <div id="filezilla-output">
-        <h3>Filezilla Command Output:</h3>
-        <div class="output-box">
-            <button class="copy-button" onclick="copyOutput('filezilla-output-box')">Copy Output</button>
-            <pre id="filezilla-output-box">Waiting for command execution...</pre>
+        <div id="sqlmap">
+            <h2>SQLmap</h2>
+            <input type="text" id="sqlmapInput" placeholder="Enter target for SQLmap">
+            <button onclick="runSqlmap()">Run SQLmap</button>
+            <pre id="sqlmapOutput"></pre>
         </div>
+
+        <!-- Add more tools as needed -->
     </div>
-</div>
 
-<div id="metasploit">
-    <h2>Metasploit</h2>
-    <button onclick="runMetasploit()">Run Metasploit Command</button>
-    <div id="metasploit-output">
-        <h3>Metasploit Command Output:</h3>
-        <div class="output-box">
-            <button class="copy-button" onclick="copyOutput('metasploit-output-box')">Copy Output</button>
-            <pre id="metasploit-output-box">Waiting for command execution...</pre>
-        </div>
-    </div>
-</div>
-
-<div id="sqlmap">
-    <h2>SQLmap</h2>
-    <button onclick="runSQLmap()">Run SQLmap Command</button>
-    <div id="sqlmap-output">
-        <h3>SQLmap Command Output:</h3>
-        <div class="output-box">
-            <button class="copy-button" onclick="copyOutput('sqlmap-output-box')">Copy Output</button>
-            <pre id="sqlmap-output-box">Waiting for command execution...</pre>
-        </div>
-    </div>
-</div>
-
-<div id="overall-output">
-    <h2>Overall Output</h2>
-    <div class="output-box">
-        <button class="copy-button" onclick="copyOutput('overall-output-box')">Copy Output</button>
-        <pre id="overall-output-box">Overall command outputs will be displayed here...</pre>
-    </div>
-</div>
-
-<script>
-    function runNmap() {
-        fetch('/run-nmap')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nmap-output-box').innerText = data;
-                updateOverallOutput(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('nmap-output-box').innerText = 'Error running Nmap.';
-            });
-    }
-
-    function runBurp() {
-        fetch('/run-burp')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('burp-output-box').innerText = data;
-                updateOverallOutput(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('burp-output-box').innerText = 'Error running Burp Suite.';
-            });
-    }
-
-    function runOpenSSL() {
-        fetch('/run-openssl')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('openssl-output-box').innerText = data;
-                updateOverallOutput(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('openssl-output-box').innerText = 'Error running OpenSSL.';
-            });
-    }
-
-    function runFilezilla() {
-        fetch('/run-filezilla')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('filezilla-output-box').innerText = data;
-                updateOverallOutput(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('filezilla-output-box').innerText = 'Error running Filezilla.';
-            });
-    }
-
-    function runMetasploit() {
-        fetch('/run-metasploit')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('metasploit-output-box').innerText = data;
-                updateOverallOutput(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('metasploit-output-box').innerText = 'Error running Metasploit.';
-            });
-    }
-
-    function runSQLmap() {
-        fetch('/run-sqlmap')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('sqlmap-output-box').innerText = data;
-                updateOverallOutput(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('sqlmap-output-box').innerText = 'Error running SQLmap.';
-            });
-    }
-
-    function updateOverallOutput(data) {
-        const overallOutput = document.getElementById('overall-output-box');
-        overallOutput.innerText += `\n${data}`;
-    }
-
-    function copyOutput(outputId) {
-        const outputText = document.getElementById(outputId).innerText;
-        navigator.clipboard.writeText(outputText)
-            .then(() => {
-                alert('Output copied to clipboard!');
-            })
-            .catch(err => {
-                console.error('Could not copy text: ', err);
-            });
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
