@@ -1,49 +1,22 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+  font-family: Arial, sans-serif;
 }
-
-.form-container {
-    max-width: 300px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #f9f9f9;
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
-
-.hidden {
-    display: none;
+#product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
 }
-
-.error-message {
-    color: red;
-    font-size: 14px;
-}
-
-h2 {
-    margin-top: 20px;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-pre {
-    background: #f0f0f0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    overflow-x: auto;
+.product-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  width: 200px;
+  margin: 1rem;
+  text-align: center;
 }
